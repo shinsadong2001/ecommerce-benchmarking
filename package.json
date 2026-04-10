@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce-atf-compare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compare": "tsx compare.ts",
+    "live": "bash run-live-dashboard.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.59.1",
+    "tsx": "^4.21.0"
+  }
+}

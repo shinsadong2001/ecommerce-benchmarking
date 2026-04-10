@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이커머스 라이브 비교</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: #e8e8e8;
+      color: #1a1a1a;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .hint {
+      margin: 0 0 20px;
+      font-size: 0.85rem;
+      color: #444;
+      max-width: 960px;
+      line-height: 1.5;
+    }
+    .hint code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 20px;
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* 타이틀 + iframe 하나의 폰 프레임 (375px 콘텐츠 폭) */
+    .device-frame {
+      flex: 0 0 auto;
+      width: 375px;
+      background: #ffffff;
+      border: 1px solid #333333;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .device-title {
+      width: 375px;
+      max-width: 100%;
+      margin: 0;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+      color: #111;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .frame-viewport {
+      width: 375px;
+      height: 812px;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .frame-viewport iframe {
+      display: block;
+      width: 375px;
+      height: 812px;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <h1>모바일 웹 라이브 비교 (375×812)</h1>
+  <p class="hint">
+    일부 사이트는 보안 헤더 때문에 iframe에 표시되지 않을 수 있습니다.
+    <code>README.md</code>의 안내에 따라 브라우저를 실행하거나 확장 프로그램을 사용해 보세요.
+  </p>
+  <div class="row">
+    <section class="device-frame" aria-label="11번가">
+      <h2 class="device-title">11번가</h2>
+      <div class="frame-viewport">
+        <iframe
+          class="live-embed"
+          src="https://m.11st.co.kr/"
+          title="11번가"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+    <section class="device-frame" aria-label="쿠팡">
+      <h2 class="device-title">쿠팡</h2>
+      <div class="frame-viewport">
+        <iframe
+          class="live-embed"
+          src="https://m.coupang.com/"
+          title="쿠팡"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+    <section class="device-frame" aria-label="G마켓">
+      <h2 class="device-title">G마켓</h2>
+      <div class="frame-viewport">
+        <iframe
+          class="live-embed"
+          src="https://m.gmarket.co.kr/"
+          title="G마켓"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+    <section class="device-frame" aria-label="네이버쇼핑">
+      <h2 class="device-title">네이버쇼핑</h2>
+      <div class="frame-viewport">
+        <iframe
+          class="live-embed"
+          src="https://m.shopping.naver.com/ns/home"
+          title="네이버쇼핑"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+    <section class="device-frame" aria-label="무신사">
+      <h2 class="device-title">무신사</h2>
+      <div class="frame-viewport">
+        <iframe
+          class="live-embed"
+          src="https://www.musinsa.com/"
+          title="무신사"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+  </div>
+  <script>
+    (function () {
+      /**
+       * 동일 출처일 때만 iframe 내부 body 배경을 흰색으로 시도합니다.
+       * 타 도메인(대부분의 이커머스)은 보안상 접근 불가 — 래퍼 .frame-viewport의 #fff로 여백을 메웁니다.
+       */
+      function paintIframeBodyWhite(frame) {
+        try {
+          var doc = frame.contentDocument;
+          if (!doc || !doc.body) return;
+          doc.body.style.setProperty("background-color", "#ffffff", "important");
+          if (doc.documentElement) {
+            doc.documentElement.style.setProperty("background-color", "#ffffff", "important");
+          }
+        } catch (_) {
+          /* cross-origin */
+        }
+      }
+      document.querySelectorAll("iframe.live-embed").forEach(function (frame) {
+        frame.addEventListener("load", function () {
+          paintIframeBodyWhite(frame);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
