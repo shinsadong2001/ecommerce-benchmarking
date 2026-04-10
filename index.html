@@ -4,83 +4,178 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>이커머스 라이브 비교</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(118, 75, 162, 0.55) rgba(255, 255, 255, 0.06);
+    }
+    *::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    *::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 100px;
+    }
+    *::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+      border-radius: 100px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #7b8ef0 0%, #8a5cb0 100%);
+      background-clip: padding-box;
+    }
+
     body {
       margin: 0;
-      padding: 20px;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-      background: #e8e8e8;
-      color: #1a1a1a;
+      min-height: 100vh;
+      padding: clamp(28px, 5vw, 56px) clamp(20px, 6vw, 72px) 64px;
+      font-family: "Pretendard", "Inter", system-ui, -apple-system, sans-serif;
+      background: #0f0f0f;
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(102, 126, 234, 0.18), transparent 50%),
+        radial-gradient(ellipse 80% 50% at 100% 50%, rgba(118, 75, 162, 0.08), transparent 45%),
+        linear-gradient(180deg, #141414 0%, #0f0f0f 40%, #1a1a1a 100%);
+      color: rgba(255, 255, 255, 0.92);
     }
+
+    .page-shell {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      margin-bottom: clamp(36px, 5vw, 52px);
+    }
+
     .page-title {
-      margin: 0 0 12px;
-      font-size: 1.35rem;
+      margin: 0 0 16px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
     }
+
     .hint {
-      margin: 0 0 28px;
-      font-size: 0.85rem;
-      color: #444;
-      line-height: 1.5;
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 52rem;
     }
+
     .hint code {
-      background: #fff;
-      padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 0.82em;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(200, 190, 255, 0.95);
     }
+
     .company-stack {
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      max-width: 900px;
-      margin: 0 auto;
+      gap: clamp(32px, 4vw, 48px);
     }
+
     .company-card {
-      background: #ffffff;
-      border: 1px solid #c8c8c8;
-      border-radius: 16px;
-      padding: 22px 22px 26px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-radius: 22px;
+      padding: 1px;
+      background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.45) 0%,
+        rgba(118, 75, 162, 0.35) 45%,
+        rgba(255, 255, 255, 0.14) 100%
+      );
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .company-card:hover {
+      transform: scale(1.02);
+      box-shadow:
+        0 20px 48px rgba(102, 126, 234, 0.12),
+        0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .company-card-inner {
+      border-radius: 21px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: clamp(24px, 3vw, 32px) clamp(22px, 3vw, 36px) clamp(28px, 3vw, 36px);
+    }
+
     .company-name {
-      margin: 0 0 18px;
-      font-size: 1.65rem;
+      margin: 0 0 clamp(20px, 3vw, 26px);
+      font-size: clamp(1.4rem, 3vw, 1.75rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #111;
-      border-bottom: 2px solid #333;
-      padding-bottom: 10px;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.96);
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .pair-row {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 28px;
+      gap: clamp(28px, 4vw, 44px);
       align-items: flex-start;
+      justify-content: center;
     }
+
     .platform-block {
       flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     .platform-label {
-      margin: 0 0 8px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #333;
-      text-align: center;
-      width: 375px;
-      max-width: 100%;
+      margin: 0 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 16px;
+      min-width: 52px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
-    /* 폰 프레임 (375×812 뷰포트) */
+
     .device-frame {
       width: 375px;
       max-width: 100%;
       background: #ffffff;
-      border: 1px solid #333333;
-      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
+
     .frame-viewport {
       width: 375px;
       max-width: 100%;
@@ -90,6 +185,7 @@
       background: #ffffff;
       overflow: hidden;
     }
+
     .frame-viewport iframe,
     .frame-viewport img {
       display: block;
@@ -101,249 +197,264 @@
       padding: 0;
       background: #ffffff;
     }
+
     .frame-viewport img {
       object-fit: contain;
     }
+
     @media (max-width: 860px) {
       .pair-row {
         flex-direction: column;
         align-items: center;
       }
-      .platform-label {
-        text-align: center;
-      }
     }
   </style>
 </head>
 <body>
-  <h1 class="page-title">모바일 웹·앱 비교 (375×812)</h1>
-  <p class="hint">
-    웹은 iframe 또는 캡처 이미지, 앱은 <code>captures/</code>의 앱 캡처 PNG로 표시합니다.
-    iframe이 비어 있으면 <code>README.md</code>의 보안 우회 안내를 참고하세요.
-  </p>
+  <div class="page-shell">
+    <header class="page-header">
+      <h1 class="page-title">모바일 웹·앱 비교 (375×812)</h1>
+      <p class="hint">
+        웹은 iframe 또는 캡처 이미지, 앱은 <code>captures/</code>의 앱 캡처 PNG로 표시합니다.
+        iframe이 비어 있으면 <code>README.md</code>의 보안 우회 안내를 참고하세요.
+      </p>
+    </header>
 
-  <div class="company-stack">
-    <article class="company-card" aria-labelledby="name-11st">
-      <h2 class="company-name" id="name-11st">11번가</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://m.11st.co.kr/page/main/home"
-                title="11번가 웹"
-                width="375"
-                height="812"
-                scrolling="yes"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-              <!--
-              <img
-                src="captures/11st.png"
-                alt="11번가 웹"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-              -->
+    <div class="company-stack">
+      <article class="company-card" aria-labelledby="name-11st">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-11st">11번가</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://m.11st.co.kr/page/main/home"
+                    title="11번가 웹"
+                    width="375"
+                    height="812"
+                    scrolling="yes"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  <!--
+                  <img
+                    src="captures/11st.png"
+                    alt="11번가 웹"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                  -->
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/11st-app.png"
+                    alt="11번가"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/11st-app.png"
-                alt="11번가"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="company-card" aria-labelledby="name-coupang">
-      <h2 class="company-name" id="name-coupang">쿠팡</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://m.coupang.com/"
-                title="쿠팡 웹"
-                width="375"
-                height="812"
-                scrolling="yes"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+      <article class="company-card" aria-labelledby="name-coupang">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-coupang">쿠팡</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://m.coupang.com/"
+                    title="쿠팡 웹"
+                    width="375"
+                    height="812"
+                    scrolling="yes"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/coupang-app.png"
+                    alt="쿠팡"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/coupang-app.png"
-                alt="쿠팡"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="company-card" aria-labelledby="name-gmarket">
-      <h2 class="company-name" id="name-gmarket">G마켓</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://m.gmarket.co.kr/"
-                title="G마켓 웹"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+      <article class="company-card" aria-labelledby="name-amazon">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-amazon">아마존</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://m.amazon.com/"
+                    title="아마존 웹"
+                    width="375"
+                    height="812"
+                    scrolling="yes"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/amazon-app.png"
+                    alt="아마존"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/gmarket-app.png"
-                alt="G마켓"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="company-card" aria-labelledby="name-naver">
-      <h2 class="company-name" id="name-naver">네이버쇼핑</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://m.shopping.naver.com/ns/home"
-                title="네이버쇼핑 웹"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+      <article class="company-card" aria-labelledby="name-gmarket">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-gmarket">G마켓</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://m.gmarket.co.kr/"
+                    title="G마켓 웹"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/gmarket-app.png"
+                    alt="G마켓"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/naver-shopping-app.png"
-                alt="네이버쇼핑"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="company-card" aria-labelledby="name-musinsa">
-      <h2 class="company-name" id="name-musinsa">무신사</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://www.musinsa.com/"
-                title="무신사 웹"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+      <article class="company-card" aria-labelledby="name-naver">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-naver">네이버쇼핑</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://m.shopping.naver.com/ns/home"
+                    title="네이버쇼핑 웹"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/naver-shopping-app.png"
+                    alt="네이버쇼핑"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/musinsa-app.png"
-                alt="무신사"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="company-card" aria-labelledby="name-amazon">
-      <h2 class="company-name" id="name-amazon">아마존</h2>
-      <div class="pair-row">
-        <div class="platform-block">
-          <p class="platform-label">웹</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <iframe
-                class="live-embed"
-                src="https://m.amazon.com/"
-                title="아마존 웹"
-                width="375"
-                height="812"
-                scrolling="yes"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+      <article class="company-card" aria-labelledby="name-musinsa">
+        <div class="company-card-inner">
+          <h2 class="company-name" id="name-musinsa">무신사</h2>
+          <div class="pair-row">
+            <div class="platform-block">
+              <p class="platform-label">웹</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <iframe
+                    class="live-embed"
+                    src="https://www.musinsa.com/"
+                    title="무신사 웹"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="platform-block">
+              <p class="platform-label">앱</p>
+              <div class="device-frame">
+                <div class="frame-viewport">
+                  <img
+                    src="captures/musinsa-app.png"
+                    alt="무신사"
+                    width="375"
+                    height="812"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="platform-block">
-          <p class="platform-label">앱</p>
-          <div class="device-frame">
-            <div class="frame-viewport">
-              <img
-                src="captures/amazon-app.png"
-                alt="아마존"
-                width="375"
-                height="812"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
+    </div>
   </div>
 
   <script>
