@@ -71,7 +71,8 @@
       background: #ffffff;
       overflow: hidden;
     }
-    .frame-viewport iframe {
+    .frame-viewport iframe,
+    .frame-viewport img {
       display: block;
       width: 375px;
       height: 812px;
@@ -79,6 +80,9 @@
       margin: 0;
       padding: 0;
       background: #ffffff;
+    }
+    .frame-viewport img {
+      object-fit: contain;
     }
   </style>
 </head>
@@ -92,6 +96,7 @@
     <section class="device-frame" aria-label="11번가">
       <h2 class="device-title">11번가</h2>
       <div class="frame-viewport">
+        <!--
         <iframe
           class="live-embed"
           src="https://m.11st.co.kr/"
@@ -99,6 +104,14 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
+        -->
+        <img
+          src="captures/11st.png"
+          alt="11번가"
+          width="375"
+          height="812"
+          loading="lazy"
+        />
       </div>
     </section>
     <section class="device-frame" aria-label="쿠팡">
